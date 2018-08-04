@@ -63,6 +63,11 @@ namespace Workshop.Api
                 options.SecurityKey = apiSettings.Jwt.SecurityKey;
                 options.ExpireSeconds = 3600;
             });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("IsAdmin", policy => policy.RequireClaim("isAdmin", "1"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,6 +81,15 @@ namespace Workshop.Api
             {
                 app.UseHsts();
             }
+
+            app.UseCors(options =>
+            {
+                options
+                    .AllowAnyHeader()
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowCredentials();
+            });
 
             app.UseHttpsRedirection();
             app.UseAuthentication();

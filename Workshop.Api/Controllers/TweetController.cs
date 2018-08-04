@@ -34,6 +34,14 @@ namespace Workshop.Api.Controllers
             return await this.tweetService.GetUserTweets(userId);
         }
 
+        // Pseudo-code, for role demonstration purpose
+        [HttpGet, Route("all")]
+        [Authorize(Policy = "IsAdmin")]
+        public IEnumerable<BasicTweetViewModel> GetAll()
+        {
+            return new List<BasicTweetViewModel>();
+        }
+
     }
 
 }

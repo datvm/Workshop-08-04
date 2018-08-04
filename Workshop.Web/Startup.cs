@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Workshop.Web.Models;
 
 namespace Workshop.Web
 {
@@ -31,6 +32,9 @@ namespace Workshop.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            var webSettings = new WebSettings();
+            this.Configuration.Bind(webSettings);
+            services.AddSingleton(webSettings);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

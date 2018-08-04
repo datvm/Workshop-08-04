@@ -1,0 +1,26 @@
+﻿@page
+
+@{
+    this.ViewBag.Title = "Tweet";
+}
+
+<h2>Tweet</h2>
+
+<div id="lst-tweets">
+    Loading...
+</div>
+
+
+<template id="template-tweet">
+    <div>
+        <h3 data-title></h3>
+        <p data-content></p>
+        <p>Posted at: <span data-created-time></span></p>
+    </div>
+</template>
+
+@section Scripts {
+
+    <script src="~/js/tweet.js"></script>
+
+}
